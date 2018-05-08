@@ -8,7 +8,7 @@ const Datepicker = props => {
 
     return (
       <div>
-        <p>Enter the date that you'll be unavailable for work.</p>
+        <label>Enter a date to check for incoming asteroids:</label>
         <Flatpickr value={date} onChange={date => onDateChange(date)} />
       </div>
     );
