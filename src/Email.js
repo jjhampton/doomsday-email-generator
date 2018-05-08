@@ -1,14 +1,16 @@
-import React from 'react';
+import React from "react";
 import moment from "moment";
-import './Email.css';
+import "./Email.css";
 
 class Email extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-        copySuccess: "",
-        emailText: this.props.asteroids.length ? this.getDoomsdayEmail(this.props.asteroids) : this.getSafeEmail()
+    this.state = {
+      copySuccess: "",
+      emailText: this.props.asteroids.length
+        ? this.getDoomsdayEmail(this.props.asteroids)
+        : this.getSafeEmail()
     };
   }
 
@@ -26,18 +28,26 @@ class Email extends React.Component {
         I won't be at work today. The following 'Potentially Hazardous' asteroids have a chance to collide with earth: 
     `;
 
-    const asteroidDetails = asteroids.map(x => {
-        const utcDate = moment.utc(new Date(x.close_approach_data[0].close_approach_date)).format("MMM D, YYYY");
+    const asteroidDetails = asteroids
+      .map(x => {
+        const utcDate = moment
+          .utc(new Date(x.close_approach_data[0].close_approach_date))
+          .format("MMM D, YYYY");
 
         debugger;
 
         return `
             Asteroid Name: ${x.name}
-            Minimum Diameter: ${x.estimated_diameter.meters.estimated_diameter_min} meters
+            Minimum Diameter: ${
+              x.estimated_diameter.meters.estimated_diameter_min
+            } meters
             Close Approach Date: ${utcDate}
-            Speed: ${x.close_approach_data[0].relative_velocity.miles_per_hour} MPH
+            Speed: ${
+              x.close_approach_data[0].relative_velocity.miles_per_hour
+            } MPH
         `;
-    }).join('\n');
+      })
+      .join("\n");
 
     const closing = `
         We're all gonna die!!! 🔥🔥🔥 You can't fire me, I quit!
@@ -68,15 +78,20 @@ class Email extends React.Component {
 
   render() {
     return (
+      <div>
+        <textarea
+          className="emailText"
+          ref={textarea => (this.textArea = textarea)}
+          value={this.state.emailText}
+          readOnly
+        />
         <div>
-            <textarea className="emailText" ref={textarea => (this.textArea = textarea)} value={this.state.emailText} readOnly></textarea>
-            <div>
-                <button onClick={this.copyToClipboard}>Copy to Clipboard</button>
-                <small>{this.state.copySuccess}</small>
-            </div>
+          <button onClick={this.copyToClipboard}>Copy to Clipboard</button>
+          <small>{this.state.copySuccess}</small>
         </div>
+      </div>
     );
   }
-};
+}
 
 export default Email;
