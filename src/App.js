@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import Datepicker from './Datepicker';
+import Email from './Email';
+import moment from 'moment';
+
 import logo from './logo.svg';
 import './App.css';
-
-import Datepicker from './Datepicker';
-import moment from 'moment';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      date: new Date(),
-      emailText: ''
+      date: null,
+      isLoading: false,
+      potentiallyHazardousAsteroids: []
     };
   }
 
@@ -21,7 +23,10 @@ class App extends Component {
   }
 
   fetchMetorData = () => {
-    console.log(this.state.date);
+    this.setState({
+      isLoading: true
+    });
+
     const startDate = moment(new Date(this.state.date)).format('YYYY-MM-DD');
     const endDate = moment(new Date(this.state.date)).format('YYYY-MM-DD');
     const apiKey = 'DEMO_KEY';  // replace with NASA Api Key: https://api.nasa.gov/index.html#apply-for-an-api-key
@@ -31,62 +36,31 @@ class App extends Component {
       .then(result => {
         console.log(result);
         const potentiallyHazardousAsteroids = result.near_earth_objects[startDate].filter(x => x.is_potentially_hazardous_asteroid);
-        if (potentiallyHazardousAsteroids.length)
-          this.generateDoomsdayEmail();
-        else
-          this.generateSafeEmail();
+
+        this.setState({ 
+          potentiallyHazardousAsteroids: potentiallyHazardousAsteroids,
+          isLoading: false
+        });
       });    
   }
 
-  generateSafeEmail = () => {
-    const emailText = `
-      Dear Boss,
-
-      Looks like humanity will survive today. There are no 'Potentially Hazardous' asteroids on the way. See you at work!
-
-      Sincerely,
-
-      Your favorite employee
-    `;
-
-    this.setState({
-      emailText: emailText
-    });
-  }
-
-  generateDoomsdayEmail = (isDoomsdayEvent) => {    
-    const emailText = `
-      Dear Boss,
-
-      We're all gonna die!!! I won't be at work today. You can't fire me, I quit!
-
-      Sincerely,
-
-      Your favorite employee
-    `;
-
-    this.setState({
-      emailText: emailText
-    });
-  }
-
   render() {
-    const { date, emailText } = this.state;
+    const { date, isLoading, potentiallyHazardousAsteroids } = this.state;
     
     return (
       <div className="app">
         <header className="app-header">
           <img src={logo} className="app-logo" alt="logo" />
-          <h1 className="app-title">Doomsday email generator!</h1>
+          <h1 className="app-title">Doomsday Email Generator</h1>
           <h2>
-            In case a meteor is coming to destroy the planet, we will help you compose an email to your boss about humanity's
+            If an asteroid is coming to destroy the planet, we will help you compose an email to your boss about humanity's
             impending doom ... and why you won't make it to work!
           </h2>
         </header>
         <Datepicker date={date} onDateChange={this.dateChanged}/>
-        <div className="emailText">
-          {emailText}
-        </div>
+        {
+          date && !isLoading && <Email asteroids={potentiallyHazardousAsteroids}></Email>
+        }          
       </div>
     );
   }
