@@ -25,7 +25,7 @@ class Email extends React.Component {
     const opening = `
         Dear Boss,
 
-        Sorry, I can't make it in to work today. The following 'Potentially Hazardous' asteroids have a chance to collide with earth: 
+        Sorry, I can't make it in to work today. The following 'Potentially Hazardous' asteroids have a chance to collide with Earth: 
     `;
 
     const asteroidDetails = asteroids

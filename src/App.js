@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Datepicker from "./Datepicker";
 import Email from "./Email";
 import moment from "moment";
-
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
@@ -36,8 +34,7 @@ class App extends Component {
     )
       .then(response => response.json())
       .then(result => {
-        console.log(result);
-        const potentiallyHazardousAsteroids = result.near_earth_objects[
+          const potentiallyHazardousAsteroids = result.near_earth_objects[
           startDate
         ].filter(x => x.is_potentially_hazardous_asteroid);
 
@@ -53,7 +50,7 @@ class App extends Component {
 
     return <div className="app">
         <header className="app-header">
-          <div className="app-logo" className="app-logo" />
+          <div className="app-logo" />
           <h1 className="app-title">Doomsday Email Generator</h1>
           <h2 className="app-description">
             If an asteroid is coming to destroy the planet, we will help you
