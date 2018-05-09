@@ -1,10 +1,23 @@
-.emailText {
-    min-height: 200px;
+.email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;    
+    width: 100%;
+}
+
+.email-text {
+    height: 250px;
     width: 80%;
     padding: 1em;
     white-space: wrap;
 }
 
-.asteroidDetail {
-    margin: 1em 0;
+.email-button {
+    margin-top: 1em;    
+}
+
+.email-copied {
+    margin-left: 1em;
 }

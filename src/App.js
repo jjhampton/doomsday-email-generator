@@ -51,22 +51,21 @@ class App extends Component {
   render() {
     const { date, isLoading, potentiallyHazardousAsteroids } = this.state;
 
-    return (
-      <div className="app">
+    return <div className="app">
         <header className="app-header">
-          <img src={logo} className="app-logo" alt="logo" />
+          <div className="app-logo" className="app-logo" />
           <h1 className="app-title">Doomsday Email Generator</h1>
-          <h2>
+          <h2 className="app-description">
             If an asteroid is coming to destroy the planet, we will help you
-            compose an email to your boss about humanity's impending doom ...
-            and why you won't make it to work!
+            compose an email warning your boss about humanity's impending doom
+            ... and why you won't make it to work!
           </h2>
         </header>
-        <Datepicker date={date} onDateChange={this.dateChanged} />
-        {date &&
-          !isLoading && <Email asteroids={potentiallyHazardousAsteroids} />}
-      </div>
-    );
+        <section className="app-content">
+          <Datepicker date={date} onDateChange={this.dateChanged} />
+          {date && !isLoading && <Email asteroids={potentiallyHazardousAsteroids} />}
+        </section>
+      </div>;
   }
 }
 

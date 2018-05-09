@@ -1,15 +1,32 @@
 .app {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-logo {
-  animation: app-logo-spin infinite 20s linear;
+  animation: app-logo-scale infinite 5s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 80px;
+  width: 80px;
+}
+
+.app-logo:after {
+    content: "\01F525";
+}
+
+@keyframes app-logo-scale {
+  from { transform: rotate(0deg) scale(0); color: #ffa500; }
+  to { transform: rotate(360deg) scale(5); color: #ff3030; }
 }
 
 .app-header {
   background-color: #222;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   color: white;
 }
@@ -18,7 +35,14 @@
   font-size: 1.5em;
 }
 
-@keyframes app-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.app-description {
+  font-size: 1em;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }

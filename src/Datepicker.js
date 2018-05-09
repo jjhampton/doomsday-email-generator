@@ -1,4 +1,5 @@
-import "flatpickr/dist/themes/material_green.css";
+import "./Datepicker.css";
+import "flatpickr/dist/themes/material_red.css";
 
 import Flatpickr from "react-flatpickr";
 import React from "react";
@@ -7,9 +8,9 @@ const Datepicker = props => {
   const { date, onDateChange } = props;
 
   return (
-    <div>
+    <div className="datepicker">
       <label>Choose a date to check for incoming asteroids:</label>
-      <div>
+      <div className="datepicker-control">
         <Flatpickr
           value={date}
           options={{ dateFormat: "M j, Y" }}

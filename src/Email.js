@@ -25,7 +25,7 @@ class Email extends React.Component {
     const opening = `
         Dear Boss,
 
-        I won't be at work today. The following 'Potentially Hazardous' asteroids have a chance to collide with earth: 
+        Sorry, I can't make it in to work today. The following 'Potentially Hazardous' asteroids have a chance to collide with earth: 
     `;
 
     const asteroidDetails = asteroids
@@ -33,8 +33,6 @@ class Email extends React.Component {
         const utcDate = moment
           .utc(new Date(x.close_approach_data[0].close_approach_date))
           .format("MMM D, YYYY");
-
-        debugger;
 
         return `
             Asteroid Name: ${x.name}
@@ -78,16 +76,18 @@ class Email extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="email">
         <textarea
-          className="emailText"
+          className="email-text"
           ref={textarea => (this.textArea = textarea)}
           value={this.state.emailText}
           readOnly
         />
         <div>
-          <button onClick={this.copyToClipboard}>Copy to Clipboard</button>
-          <small>{this.state.copySuccess}</small>
+          <button className="email-button" onClick={this.copyToClipboard}>
+            Copy to Clipboard
+          </button>
+          <small className="email-copied">{this.state.copySuccess}</small>
         </div>
       </div>
     );

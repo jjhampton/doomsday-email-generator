@@ -1,0 +1,10 @@
+.datepicker {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.datepicker-control {
+    margin-top: .5em;
+}

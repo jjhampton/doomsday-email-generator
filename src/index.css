@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+input, textarea {
+  border-radius: 2px;
+  border: 1px solid gray;
+}
+
+input {
+  padding-left: .5em;
+}
