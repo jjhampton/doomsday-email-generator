@@ -9,7 +9,7 @@ const Datepicker = props => {
 
   return (
     <div className="datepicker">
-      <label>Choose a date to check for incoming asteroids:</label>
+      <label>Choose a date to check for incoming asteroids and generate your email:</label>
       <div className="datepicker-control">
         <Flatpickr
           value={date}
