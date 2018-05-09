@@ -17,10 +17,10 @@ class App extends Component {
 
   dateChanged = date => {
     this.setState({ date });
-    this.fetchMetorData();
+    this.fetchAsteroidData();
   };
 
-  fetchMetorData = () => {
+  fetchAsteroidData = () => {
     this.setState({
       isLoading: true
     });
