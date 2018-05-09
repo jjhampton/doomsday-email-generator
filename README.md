@@ -1,4 +1,6 @@
 # Doomsday Email Generator
+https://github.com/jjhampton/doomsday-email-generator
+
 Some days, you’d just rather go out in a fiery blaze than go to work. While this might not actually happen in our lifetimes, it’s better to be prepared.
 This app will leverage NASA’s NeoW (Near Earth Object Web Service) to find the perfect asteroid to help you compose an email to your boss about humanity’s impending doom (and why you won’t make it to work).
  
