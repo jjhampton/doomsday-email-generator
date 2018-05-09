@@ -29,7 +29,7 @@ class App extends Component {
 
     const startDate = moment(new Date(this.state.date)).format("YYYY-MM-DD");
     const endDate = moment(new Date(this.state.date)).format("YYYY-MM-DD");
-    const apiKey = "DEMO_KEY"; // replace with NASA Api Key: https://api.nasa.gov/index.html#apply-for-an-api-key
+    const apiKey = "5y5LZqDuL4agOD23pSO0bCtxQUTHWyf2qLcfVjMC";
 
     fetch(
       `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=${apiKey}`
